@@ -35,7 +35,7 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a href="<?php //echo site_url ('/users/logout') ?>" title="<?php //echo $_SESSION['user']['name'] ?>">
+                    <a href="<?php echo site_url ('/users/logout') ?>">
                         <i class="bi-person" style="color:#F00"></i>
                     </a>
                     

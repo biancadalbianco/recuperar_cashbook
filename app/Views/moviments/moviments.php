@@ -7,16 +7,16 @@ $mes=date("m");
 $cash_balance = $this->data["cash_balance"];
 
 ?>
-<form action="<?php base_url("/filtro")?>">
+<form method="POST" action="<?php echo site_url ("/moviments/filtro")?>">
 
 
 <div id="header-moviment">
     <div class="input-group">
-        <a class="btn btn-primary"> Add </a>
+        <a href="<?php echo site_url ('/add')?>" class="btn btn-primary">Add</a>
     </div>
     <div class="input-group">
         <label class="input-group-text" for="inputGroupSelect01">Year</label>
-        <select class="form-select" id="inputGroupSelect01">
+        <select class="form-select" id="inputGroupSelect01" name="year">
             <?php  
                 echo "<option value='$ano' selected>$ano</option>";
                 $ano=$ano-1;
@@ -31,7 +31,7 @@ $cash_balance = $this->data["cash_balance"];
     </div>
     <div class="input-group">
         <label class="input-group-text" for="inputGroupSelect01">Month</label>
-        <select class="form-select" id="inputGroupSelect01">
+        <select class="form-select" id="inputGroupSelect01" name="month">
             <?php  
                 echo "<option value='$mes'>Mes Atual </option>";
             ?>
@@ -53,11 +53,10 @@ $cash_balance = $this->data["cash_balance"];
     <div class="input-group">
         <span class="input-group-text" id="basic-addon1">Cash balance</span>
         <input type="text" class="form-control" id="input-cash-balance" value="<?php echo $cash_balance; ?>"  disabled>
-    </div>
+    </div>  
 </div>
 <div class="text-center p-3">
-  <button class="btn btn-primary"">Filtrar</button>
-    
+  <button type="submit" class="btn btn-primary">Filtrar</button>
 </div>
 </form>
 <table class="table">

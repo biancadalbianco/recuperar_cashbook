@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\BaseController;
+use App\Models\UserModel;
 
 class User extends BaseController
 {
 
     public function index()
     {
-        return view('users/index');
+		$user = new UserModel();
+		$dados["usuarios"] = $user-> findAll();
+        return view('users/index', $dados);
     }
 
     public function login()
@@ -20,11 +24,8 @@ class User extends BaseController
     }
 
     public function logout() {
-		$this->unsetUser();
-		$msg['class']="success";
-		$msg['msg']="By";
-		$_SESSION['msg'][]=$msg;
-		header("Refresh: 2; url =".base_url());
+		session_destroy();
+		return redirect()->to(base_url());
     } 
 
     public function auth() {
@@ -40,7 +41,7 @@ class User extends BaseController
 			$where['password']=md5($_POST['user']['password']);
 			
 			$user=$userModel->select($cols,$where);
-			
+			var_dump($user);
 			if($user){
 				$this->setUser($user[0]);
 				$msg['class']="success";
@@ -54,4 +55,9 @@ class User extends BaseController
 		}
 		header("Refresh: 2; url =".base_url());
 	} // autenticar
+
+	public function cadastro() {
+		$user = new UserModel();
+		$user-> cadastro();
+	} // cadastrar
 }

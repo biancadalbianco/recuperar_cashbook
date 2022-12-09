@@ -32,6 +32,47 @@
         </div>
       </div>
     </div>
+
+    <div class="wrap" id="input">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+			'packages': ['corechart']
+		  });
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        //Grafico de todos os movimentos
+        var data = google.visualization.arrayToDataTable([
+          ['Descrição', 'Valor do movimento'],
+          <?php	foreach ($listaMoviment as $listaMoviment) {?>
+          ['<?php echo $listaMoviment['description'];?>',<?php echo $listaMoviment['value'];?>], <?php } ?>
+        ]);
+        var options = {
+          title: 'Movimentos',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('movimentos'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    </div>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+             <div id="movimentos" style="width: 80%; height: 500px; margin-left:10%;" class="col"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+             <div id="dashboard" style="width: 80%; height: 500px; margin-left:10%;" class="col"></div>
+          </div>
+        </div>
+      </div>
+  </body>
 <?php
 
 

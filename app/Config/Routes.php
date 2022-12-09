@@ -35,7 +35,12 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Moviments::indexHome');
+$routes->get('/add', 'Moviments::add');
+//$routes->get('/moviments/filtro', 'Moviments::filtro');
+$routes->match(['get', 'post'], 'moviments/filtro', 'Moviments::filtro');
+$routes->match(['get', 'post'], 'moviments/addAcao', 'Moviments::addAcao');
+$routes->match(['get', 'post'], '/user/cadastro', 'User::cadastro');
 $routes->get('/users/login/', 'User::login');
 $routes->get('/users/logout/', 'User::logout');
 $routes->get('/users/auth/', 'User::auth');
